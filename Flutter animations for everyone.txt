@@ -1,0 +1,202 @@
+slidenumbers: true
+
+# Flutter animations for everyone
+[.footer: ##### @JamalBelilet (🐦 🐙 📸 👍) ]
+
+---
+
+## Table of content
+Basics of **animating Flutter** 
+
+**Implicit** animations
+- 👨🏽‍💻 Built in **Animated(Property)**
+- 👨🏽‍💻 **Tween Animation Builder**
+
+
+
+**Explicit** animations 
+- 👨🏽‍💻 Built in **(Property)Transition**
+- 👨🏽‍💻 **Animated Widget** or **Builder**
+
+**Animations package** (👨🏽‍💻)
+
+![right fit](empty.png)
+
+---
+
+## Djamaleddine Belilet (Jamal) 
+[.footer: ##### @JamalBelilet (🐦 🐙 📸 👍) ]
+
+**Building** new software while **supporting** and **solving problems** of existing products.
+ 
+**Brandbassador** is the ultimate ambassador marketing management tool for fast-growing eCommerce brands.
+
+Javascript, **Dart & Flutter**
+
+![right fit](brandbassador.com.png) 
+
+---
+
+## Basics of animating Flutter
+
+Are we **mutating** a Flutter widget? 
+- In most cases, YES!
+- Scale, rotate, position, ...,
+- Colour, opacity, ...,
+- Any **property**.
+
+NO!
+- Lotie
+- or [**Rive**](https://pub.dev/packages/rive)
+
+![right fit](icon-animation.gif)
+
+---
+
+## Implicit animations
+Simply mutating a property (multiple properties)
+- Animating **from** value **A**
+- **To** value **B**,
+- Controlling only the **duration**,
+- And the [**curves**](https://api.flutter.dev/flutter/animation/Curves-class.html),
+- Everything else is controlled **by the framework**.
+
+---
+## [Built in Animated(Property)](https://api.flutter.dev/flutter/widgets/ImplicitlyAnimatedWidget-class.html)
+Animated(Property): 
+**Opacity**, **Padding**, Align, **Size**, Positioned, Rotation...
+
+Similar API but more complex:
+- **AnimatedContainer**,
+- AnimatedSwitcher,
+- AnimatedCrossFade, ...
+
+---
+## 👨🏽‍💻 Hands on Animated(Property)
+**TODO 1:** Make a piece of content fade out.
+**TODO 2:** Animate a changing ImageA into ImageB.
+**TODO 2:** Animate a highlighting a piece of content with shadow.
+
+---
+## Tween Animation Builder
+- Continues, 
+- Always goes **from current** **to** the **last** provided value.
+- Posibility of optimisation.
+
+---
+## Tween Animation Builder
+```dart
+return TweenAnimationBuilder<double>(
+  tween: Tween<double>(begin: 0, end: _endValue),
+  duration: const Duration(seconds: 1),
+  builder: (BuildContext context, double size, Widget? child) {
+    return IconButton(
+      iconSize: size,
+      color: Colors.blue,
+      icon: child!,
+      onPressed: () {
+        setState(() {
+          _endValue = _endValue == 24.0 ? 48.0 : 24.0;
+        });
+      },
+    );
+  },
+  child: const Icon(Icons.aspect_ratio),
+);
+```
+
+
+---
+
+## 👨🏽‍💻 Hands on Tween Animation Builder
+**TODO 1 :** animate the colour of any widget other than Container without setState.
+**TODO 2 :** animate a piece of content with infinite fade-in/fade-out .
+
+---
+## Explicit animations 
+- One direction isn't always the right direction.
+- More controle.
+
+---
+## Built in explicit animations
+(Property)Transition: 
+**Size**, **Fade**, **Align**, Scale, Slide...
+
+More then just a property like **DecoratedBoxTransition**,
+
+---
+## Built in explicit animations
+```dart
+// with TickerProviderStateMixin
+
+late final _controller = AnimationController(
+	vsync: this,
+	duration: const Duration(seconds: 1),
+)..repeat();
+
+// Optional
+// late final _animation = CurvedAnimation(
+//   parent: _controller,
+//   curve: Curves.fastOutSlowIn,
+// );
+
+SizeTransition(
+	sizeFactor: _animation,
+	child: const Center(
+	  child: FlutterLogo(size: 200.0),
+	),
+),
+```
+
+---
+## Animated Widget or [Animated Builder](https://youtu.be/N-RiyZlv8v8)
+- Almost identical to TweenAnimationBuilder,
+- But uses AnimationController instead of tweens.
+- Either put **AnimatedBuilder** in your widget tree,
+- Or extract it to it's own widget extending **AnimatedWidget**
+
+---
+## AnimatedBuilder
+```dart
+AnimatedBuilder(
+  animation: _controller,
+  child: const MyWidget(),
+  builder: (BuildContext context, Widget? child) {
+    return Transform.rotate(
+      angle: _controller.value * pi,
+      child: child,
+    );
+  },
+)
+```
+
+---
+## [Animations package (👨🏽‍💻)](https://pub.dev/packages/animations)
+High quality pre-built Animations for Flutter
+- Container transform
+- Shared axis
+- Fade through
+- Fade
+Part of **flutter/packages**
+Highlighted as a [**package of the week**](https://youtu.be/HHzAJdlEj1c)
+
+**TODO 1**: Use any of the above to switch between two states.
+
+---
+## Recup
+Basics of **animating Flutter** 
+
+**Implicit** animations
+- 👨🏽‍💻 Built in **Animated(Property)**
+- 👨🏽‍💻 **Tween Animation Builder**
+
+**Explicit** animations 
+- 👨🏽‍💻 Built in **(Property)Transition**
+- 👨🏽‍💻 **Animated Widget** or **Builder**
+
+---
+## Thank you!
+Slides: https://github.com/**jamalbelilet/testing-flutter** 
+
+[.footer: ## @JamalBelilet (🐦 🐙 📸 👍) ]
+ 
